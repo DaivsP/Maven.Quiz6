@@ -1,12 +1,18 @@
 package rocks.zipcode.io.fundamentals;
 
+import java.util.HashMap;
+
 public class BasicStringUtils {
     /**
      * @param chars - characters used to instantiate a new string object
      * @return new String which wraps the arguments passed in
      */
     public static String getString(char[] chars) {
-        return null;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < chars.length; i++) {
+            sb.append(chars[i]);
+        }
+        return sb.toString();
     }
 
     /**
@@ -14,7 +20,11 @@ public class BasicStringUtils {
      * @return new String which wraps the arguments passed in
      */
     public static String getString(Character[] chars) {
-        return null;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < chars.length; i++) {
+            sb.append(chars[i]);
+        }
+        return sb.toString();
     }
 
     /**
@@ -22,7 +32,7 @@ public class BasicStringUtils {
      * @return identical string with lowercase and uppercase vowels removed
      */
     public static String removeAllVowels(String string) {
-        return null;
+        return string.replaceAll("[AaEeIiOoUu]", "");
     }
 
     /**
@@ -31,6 +41,25 @@ public class BasicStringUtils {
      * @return
      */
     public static String removeSpecifiedCharacters(String string, String charactersToRemove) {
-        return null;
+        StringBuilder sb = new StringBuilder(string);
+        HashMap<Character, Integer> table = new HashMap<>();
+
+        for (int i = 0; i < charactersToRemove.length(); i++) {
+            table.put(charactersToRemove.charAt(i), 1);
+        }
+
+        int p = 0;
+        for (int i = 0; i < string.length(); i++) {
+            if (table.containsKey(string.charAt(i))){
+                if (p == 0){
+                    sb.deleteCharAt(i);
+                }
+                else {
+                    sb.deleteCharAt(i - p);
+                }
+                p++;
+            }
+        }
+        return sb.toString();
     }
 }

@@ -1,7 +1,12 @@
 package rocks.zipcode.io.fundamentals;
 
 
+import com.google.common.collect.Sets;
+import rocks.zipcode.io.arrays.ArrayUtils;
+import rocks.zipcode.io.collections.PowerSet;
+
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * @author leon on 10/01/2019.
@@ -13,10 +18,12 @@ public class StringUtils {
      */
     public static Collection<String> getAllCasings(String string) {
         // get length of string
+        Integer length = string.length();
         // get range of length
         // get power-set of range
-
+        PowerSet powerSet = new PowerSet(ArrayUtils.getRange(1, length));
         // for every set in power-set
+        Set<Set<String>> powerSets = powerSet.permute();
             // uppercase indices of string using set
         return null;
     }

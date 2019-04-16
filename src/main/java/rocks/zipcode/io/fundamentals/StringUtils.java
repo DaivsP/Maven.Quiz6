@@ -5,6 +5,8 @@ import com.google.common.collect.Sets;
 import rocks.zipcode.io.arrays.ArrayUtils;
 import rocks.zipcode.io.collections.PowerSet;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Set;
 
@@ -18,14 +20,15 @@ public class StringUtils {
      */
     public static Collection<String> getAllCasings(String string) {
         // get length of string
-        Integer length = string.length();
         // get range of length
         // get power-set of range
-        PowerSet powerSet = new PowerSet(ArrayUtils.getRange(1, length));
         // for every set in power-set
-        Set<Set<String>> powerSets = powerSet.permute();
-            // uppercase indices of string using set
-        return null;
+        // uppercase indices of string using set
+        Collection<String> output = new ArrayList<>();
+        Integer length = string.length();
+        PowerSet<Integer> powerSet = new PowerSet(ArrayUtils.getRange(0, length-1));
+        powerSet.permute().forEach(set -> output.add(upperCaseIndices(string, set.toArray(new Integer[0]))));
+        return output;
     }
 
     /**
